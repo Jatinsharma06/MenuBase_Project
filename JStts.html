@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text</title>
+    <style>
+        body {
+            background-color: #2C3E50; /* Dark background color */
+            color: #ECF0F1; /* Light text color */
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #F1C40F; /* Highlight color for headings */
+            margin-top: 50px;
+        }
+        button {
+            background-color: #34495E; /* Button background color */
+            color: #ECF0F1; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:disabled {
+            background-color: #7F8C8D; /* Disabled button color */
+            cursor: not-allowed;
+        }
+        button:hover:not(:disabled) {
+            background-color: #1ABC9C; /* Button hover color */
+        }
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Speech to Text</h1>
+    <button id="start-btn">Start Listening</button>
+    <button id="stop-btn" disabled>Stop Listening</button>
+    <p id="result">Speech will be displayed here...</p>
+
+    <script>
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const result = document.getElementById('result');
+
+        // Check if the browser supports the Web Speech API
+        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+
+            recognition.continuous = true; // Keep listening until stopped
+            recognition.interimResults = true; // Show interim results
+
+            // Start listening when the start button is clicked
+            startBtn.addEventListener('click', () => {
+                recognition.start();
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                result.textContent = 'Listening...';
+            });
+
+            // Stop listening when the stop button is clicked
+            stopBtn.addEventListener('click', () => {
+                recognition.stop();
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                result.textContent = 'Stopped listening.';
+            });
+
+            // Process the results
+            recognition.onresult = (event) => {
+                let transcript = '';
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    transcript += event.results[i][0].transcript;
+                }
+                result.textContent = transcript;
+            };
+
+            // Handle errors
+            recognition.onerror = (event) => {
+                result.textContent = `Error occurred: ${event.error}`;
+            };
+        } else {
+            result.textContent = 'Your browser does not support the Web Speech API.';
+        }
+    </script>
+</body>
+</html>

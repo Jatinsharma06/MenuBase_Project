@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #F1C40F;
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #34495E;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #34495E;
+            border-radius: 4px;
+            background-color: #ECF0F1;
+            color: #2C3E50;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #F1C40F;
+            color: #2C3E50;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #d4ac0d;
+        }
+        h2 {
+            text-align: center;
+            color: #F1C40F;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            text-align: center;
+        }
+        a {
+            color: #ECF0F1;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Search</h1>
+    <form action="http://127.0.0.1:5005/gsearch" method="post">
+        <input type="text" name="query" placeholder="Enter your search query" required>
+        <input type="submit" value="Search">
+    </form>
+    <!-- {% if results %}
+        <h2>Search Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li><a href="{{ result }}">{{ result }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %} -->
+</body>
+</html>

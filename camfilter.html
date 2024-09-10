@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Interface</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2C3E50;
+            margin: 0;
+            color: #ECF0F1;
+        }
+        video {
+            width: 80%;
+            border: 2px solid #ECF0F1;
+            border-radius: 10px;
+        }
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .controls button {
+            background-color: #F1C40F;
+            border: none;
+            color: #2C3E50;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+        .controls button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <video id="video" autoplay></video>
+    <div class="controls">
+        <button onclick="applyFilter('red')">Red Filter</button>
+        <button onclick="applyFilter('blue')">Blue Filter</button>
+        <button onclick="applyFilter('green')">Green Filter</button>
+        <button onclick="applyFilter('grey')">Grey Filter</button>
+    </div>
+
+    <script>
+        // Access the camera and display video feed
+        const video = document.getElementById('video');
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            });
+
+        function applyFilter(color) {
+            switch(color) {
+                case 'red':
+                    video.style.filter = 'grayscale(100%) sepia(100%) hue-rotate(0deg) saturate(1000%)';
+                    break;
+                case 'blue':
+                    video.style.filter = 'grayscale(100%) sepia(100%) hue-rotate(200deg) saturate(1000%)';
+                    break;
+                case 'green':
+                    video.style.filter = 'grayscale(100%) sepia(100%) hue-rotate(100deg) saturate(1000%)';
+                    break;
+                case 'grey':
+                    video.style.filter = 'grayscale(100%)';
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

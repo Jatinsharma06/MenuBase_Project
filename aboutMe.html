@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jatin Sharma - About Me</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1f4037, #99f2c8);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #00ffab;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover,
+        .navbar .nav-links a.active {
+            color: #00ffab;
+        }
+
+        .navbar .nav-links a i {
+            margin-left: 5px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #00ffab;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(0, 255, 171, 0.5);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .main-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            font-size: 24px;
+            margin-bottom: 30px;
+            height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #00ffab;
+            letter-spacing: 2px;
+            animation: typing 6s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            0% { width: 0 }
+            40%, 100% { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ffab }
+        }
+
+        .main-content p {
+            font-size: 18px;
+            max-width: 800px;
+            line-height: 1.6;
+            color: #f1f1f1;
+            margin-bottom: 40px;
+        }
+
+        /* Background Animation */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('background-image.jpg') no-repeat center center/cover;
+            z-index: -1;
+            opacity: 0.3;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0 }
+            to { opacity: 0.3 }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar .title {
+                font-size: 20px;
+            }
+
+            .navbar .nav-links a {
+                font-size: 14px;
+            }
+
+            .main-content h1 {
+                font-size: 36px;
+            }
+
+            .typewriter {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="title">About Me</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#" class="active">About</a>
+            <a href="project.html">Projects</a>
+            <a href="https://www.linkedin.com/in/jatin-sharma-engineer" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/Jatinsharma06" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Profile Picture -->
+        <div class="profile-pic">
+            <img src="myPhoto.jpeg" alt="Jatin Sharma">
+        </div>
+
+        <!-- Name -->
+        <h1>Jatin Sharma</h1>
+
+        <!-- Typewriter Effect -->
+        <div class="typewriter">AI Enthusiast | Cloud Engineer | Web Developer</div>
+
+        <!-- About Paragraph -->
+        <p>
+            As a Cloud Engineer, I assist in setting up, managing, and maintaining cloud environments like AWS, Azure, or GCP. My role involves supporting the deployment of cloud-based solutions, optimizing cloud resources, and ensuring security. I collaborate with senior engineers to implement cloud technologies, gaining hands-on experience in automation and troubleshooting.
+        </p>
+    </div>
+</body>
+</html>

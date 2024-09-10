@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Docker Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2C3E50;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #34495E;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #F1C40F;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ECF0F1;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background: #F1C40F;
+            color: #ECF0F1;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #D4AC0D;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Docker Management</h1>
+
+        <form id="dockerImgPullForm" action="http://127.0.0.1:5005/docker_image_pull" method="post">
+            <label for="image">Docker Image:</label>
+            <input type="text" id="image" name="image" required>
+            <input type="submit" value="Pull Docker Image">
+        </form>
+
+        <form id="dockerLaunchForm" action="http://127.0.0.1:5005/launch_docker" method="post">
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <label for="image">Docker Image:</label>
+            <input type="text" id="image" name="image" required>
+            <input type="submit" value="Launch Docker Container">
+        </form>
+
+        <form id="dockerStopForm" action="http://127.0.0.1:5005/docker_stop" method="post">
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <input type="submit" value="Stop Docker Container">
+        </form>
+
+        <form id="dockerStartForm" action="http://127.0.0.1:5005/docker_start" method="post">
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <input type="submit" value="Start Docker Container">
+        </form>
+
+        <form id="dockerStatusForm" action="http://127.0.0.1:5001/docker_status" method="post">
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <input type="submit" value="Get Docker Container Status">
+        </form>
+
+        <form id="dockerRemoveForm" action="http://127.0.0.1:5005/docker_remove" method="post">
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <input type="submit" value="Remove Docker Container">
+        </form>
+
+        <form id="dockerLogsForm" action="http://127.0.0.1:5005/docker_logs" method="post">
+            <label for="container_name">Container Name:</label>
+            <input type="text" id="container_name" name="container_name" required>
+            <input type="submit" value="Get Docker Container Logs">
+        </form>
+
+
+        <form id="dockerImgRemoveForm" action="http://127.0.0.1:5005/docker_image_remove" method="post">
+            <label for="image">Docker Image:</label>
+            <input type="text" id="image" name="image" required>
+            <input type="submit" value="Remove Docker Image">
+        </form>
+    </div>
+</body>
+</html>
+
+                                                                                             

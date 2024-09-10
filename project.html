@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Jatin Sharma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1e3c72, #2a5298); /* New gradient background */
+            color: #ECF0F1;
+            font-family: "Poppins", sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent navbar */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00b894;
+            margin-left: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: #ECF0F1;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #00b894;
+        }
+
+        .navbar .nav-links a::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #00b894;
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navbar .nav-links a:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+        }
+
+        .navbar .nav-links a.active {
+            color: #00b894;
+        }
+
+        /* Main content section */
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Buttons Styling */
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .button-container button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #ECF0F1;
+            background-color: #34495E;
+            border: 2px solid #00b894;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button-container button:hover {
+            background-color: #00b894;
+            color: #34495E;
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .button-container button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+            border-radius: 50%;
+        }
+
+        .button-container button:hover::before {
+            transform: scale(4);
+        }
+
+        /* Floating icons animation */
+        .floating-icon {
+            position: absolute;
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.2);
+            animation: floatAnimation 15s infinite ease-in-out;
+        }
+
+        /* Floating Icons Positions */
+        .icon-1 { top: 10%; left: 20%; animation-duration: 10s; }
+        .icon-2 { top: 50%; left: 70%; animation-duration: 20s; }
+        .icon-3 { top: 70%; left: 30%; animation-duration: 12s; }
+        .icon-4 { top: 20%; left: 80%; animation-duration: 18s; }
+        .icon-5 { top: 40%; left: 40%; animation-duration: 25s; }
+
+        @keyframes floatAnimation {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Floating icons background -->
+    <i class="fas fa-code floating-icon icon-1"></i>
+    <i class="fas fa-cogs floating-icon icon-2"></i>
+    <i class="fas fa-terminal floating-icon icon-3"></i>
+    <i class="fas fa-database floating-icon icon-4"></i>
+    <i class="fas fa-laptop-code floating-icon icon-5"></i>
+
+    <div class="navbar">
+        <div class="title">Projects</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aboutMe.html">About</a>
+            <a href="#" class="active">Projects</a>
+            <a href="https://www.linkedin.com/in/jatin-sharma-engineer" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Jatinsharma06" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="button-container">
+            <a href="http://127.0.0.1:5005/geo"><button>Geo Coordinates</button></a>
+            <button onclick="location.href='email.html'">Send Emails</button>
+            <a href="http://127.0.0.1:5005/sendemails"><button>Send Bulk Emails</button></a>
+            <button onclick="window.location.href='gsearch.html'">Google Search</button>
+            <button onclick="window.location.href='convertTextToSpeech.html'">Text To Speech</button>
+            <a href="http://127.0.0.1:5005/schedule_email"><button>Schedule Email</button></a>
+            <a href="http://127.0.0.1:5005/sms"><button>SMS</button></a>
+            <button onclick="window.location.href='camfilter.html'">Open Camera and apply filter</button>
+            <a href="http://127.0.0.1:5005/geolocation"><button>Geo location</button></a>
+            <a href="http://127.0.0.1:5005/camglasses"><button>Open Camera with Sunglasses</button></a>
+            <button onclick="window.location.href='docker.html'">Docker Management System</button>
+            <a href="http://127.0.0.1:5005/s3"><button>Upload on S3</button></a>
+            <button onclick="window.location.href='jsvid.html'">Video Capture using JS</button>
+            <button onclick="window.location.href='JStts.html'">Text to Speech using JS</button>
+            <button onclick="window.location.href='photoJS.html'">Photo Capture using JS</button>
+            <button onclick="window.location.href='ec2.html'">Launch EC2 Instance</button>
+            <a href="http://127.0.0.1:5005/terminal"><button>Linux Terminal</button></a>
+            <a href="http://127.0.0.1:5005/bmi"><button>BMI Calculator</button></a>
+        </div>
+    </div>
+</body>
+</html>

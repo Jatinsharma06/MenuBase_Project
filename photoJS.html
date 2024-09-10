@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture Photo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2C3E50;
+            margin: 0;
+            color: #ECF0F1;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background-color: #34495E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #video {
+            border: 2px solid #ECF0F1;
+            border-radius: 10px;
+        }
+        #canvas {
+            display: none;
+        }
+        #photo {
+            border: 2px solid #ECF0F1;
+            border-radius: 10px;
+            margin-top: 10px;
+            max-width: 100%;
+        }
+        button {
+            background-color: #F1C40F;
+            border: none;
+            color: #2C3E50;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #F39C12;
+        }
+        #download {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #F1C40F;
+            font-size: 16px;
+        }
+        #download:hover {
+            color: #F39C12;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Capture Photo</h1>
+        <video id="video" width="640" height="480" autoplay></video>
+        <button id="capture">Capture Photo</button>
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <img id="photo" alt="Captured Photo">
+        <a id="download" href="#" download="captured-photo.png">Download Photo</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('video');
+            const canvas = document.getElementById('canvas');
+            const photo = document.getElementById('photo');
+            const captureButton = document.getElementById('capture');
+            const downloadLink = document.getElementById('download');
+            const context = canvas.getContext('2d');
+
+            // Access the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                    video.play();
+                })
+                .catch(error => {
+                    console.error('Error accessing the camera', error);
+                });
+
+            // Capture the photo when the button is clicked
+            captureButton.addEventListener('click', () => {
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+                const dataURL = canvas.toDataURL('image/png');
+                photo.src = dataURL;
+                downloadLink.href = dataURL; // Update download link with captured photo data
+            });
+        });
+    </script>
+</body>
+</html>

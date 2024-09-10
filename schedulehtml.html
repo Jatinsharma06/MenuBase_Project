@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Email</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #F1C40F;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #34495E;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            color: #ECF0F1;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="time"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ECF0F1;
+            color: #2C3E50;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            background-color: #F1C40F;
+            color: #2C3E50;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #D4AC0D;
+        }
+
+        input[type="submit"]:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="http://127.0.0.1:5005/schedule_email" method="get">
+        <h1>Schedule an Email</h1>
+        <label for="sender_email">Your Email:</label>
+        <input type="email" id="sender_email" name="sender_email" required>
+        
+        <label for="sender_password">Your Password:</label>
+        <input type="password" id="sender_password" name="sender_password" required>
+        
+        <label for="recipient_email">Recipient's Email:</label>
+        <input type="email" id="recipient_email" name="recipient_email" required>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        
+        <label for="timeinput">Time to Send (HH:MM):</label>
+        <input type="time" id="timeinput" name="timeinput" required>
+        
+        <input type="submit" value="Schedule Email">
+    </form>
+</body>
+</html>

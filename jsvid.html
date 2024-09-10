@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Access</title>
+    <style>
+        body {
+            background-color: #2C3E50; /* Dark theme background */
+            color: #ECF0F1; /* Light text color for contrast */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        video {
+            border: 2px solid #F1C40F; /* Highlight border */
+            border-radius: 10px;
+        }
+        #canvas {
+            display: none;
+        }
+        #recordedVideo {
+            display: none;
+            border: 2px solid #F1C40F; /* Highlight border */
+            border-radius: 10px;
+        }
+        button {
+            background-color: #34495E; /* Button background */
+            color: #ECF0F1; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:disabled {
+            background-color: #7F8C8D; /* Disabled button background */
+            cursor: not-allowed;
+        }
+        button:hover {
+            background-color: #1ABC9C; /* Button hover effect */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera Access</h1>
+    <div class="container">
+        <video id="video" width="640" height="480" autoplay></video>
+        <div>
+            <button id="startRecording">Start Recording</button>
+            <button id="stopRecording" disabled>Stop Recording</button>
+        </div>
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <video id="recordedVideo" width="640" height="480" controls></video>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const recordedVideo = document.getElementById('recordedVideo');
+        const startRecordingButton = document.getElementById('startRecording');
+        const stopRecordingButton = document.getElementById('stopRecording');
+
+        let mediaRecorder;
+        let recordedChunks = [];
+
+        async function startVideo() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                video.srcObject = stream;
+                video.play();
+            } catch (error) {
+                console.error('Error accessing the camera: ', error);
+            }
+        }
+
+        function startRecording() {
+            recordedChunks = [];
+            mediaRecorder = new MediaRecorder(video.srcObject);
+
+            mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+
+            mediaRecorder.onstop = () => {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                recordedVideo.src = url;
+                recordedVideo.style.display = 'block';
+            };
+
+            mediaRecorder.start();
+            startRecordingButton.disabled = true;
+            stopRecordingButton.disabled = false;
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            startRecordingButton.disabled = false;
+            stopRecordingButton.disabled = true;
+        }
+
+        startVideo();
+
+        startRecordingButton.addEventListener('click', startRecording);
+        stopRecordingButton.addEventListener('click', stopRecording);
+    </script>
+</body>
+</html>
